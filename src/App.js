@@ -1,20 +1,25 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Box } from '@mui/material'
+import { Box } from '@mui/material';
 
 import './App.css';
-import 
 
-const App = () => {
+import ExerciseDetail from './pages/ExerciseDetail';
+import Home from './pages/Home';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
+
+function App() {
   return (
-    <Box width="400px">
-        Navbar
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/exercise/:id" element={<ExerciseDetail />} />
-        </Routes>
+    <Box width="400px" sx={{ width: { xl: '1488px' } }} m="auto">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/exercise/:id" element={<ExerciseDetail />} />
+      </Routes>
+      <Footer />
     </Box>
-  )
+  );
 }
 
-export default App
+export default App;
