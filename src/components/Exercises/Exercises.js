@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Pagination from '@mui/material/Pagination';
+import { Box, Stack, Typography } from '@mui/material';
 
-function Exercises() {
-  console.log('exercises');
+import { exerciseOptions, fetchData } from '../../utils/fetchData';
+import ExerciseCart from '../ExerciseCard/ExerciseCard';
+
+function Exercises({ setExercises, exercises, bodyPart }) {
+  console.log('aaa');
   return (
-    <div>Exercises</div>
+    <Box
+      id="exercises"
+      sx={{ mt: { lg: '100px' } }}
+      mt="50px"
+      p="20px"
+    >
+      <Typography variant="h3" mb="46px">
+        Showing Results
+      </Typography>
+      <Stack
+        direction="row"
+        sx={{ gap: { lg: '110px', xs: '50px' } }}
+        flexWrap="wrap"
+        justifyContent="center"
+      >
+        {exercises.map((exersice, index) => (
+          <ExerciseCart key={index} exercise={exersice} />
+        ))}
+      </Stack>
+    </Box>
   );
 }
 
