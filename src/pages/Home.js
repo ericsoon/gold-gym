@@ -8,7 +8,7 @@ import Exercises from '../components/Exercises/Exercises';
 function Home() {
   const [bodyPart, setBodyPart] = useState('all');
   const [exercises, setExercises] = useState([]);
-
+  // test
   return (
     <Box>
       <HeroBanner />
