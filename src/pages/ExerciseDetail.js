@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box } from '@mui/material';
 
-import { exerciseOptions, fetchData } from '../utils/fetchData';
+import { exerciseOptions, fetchData, youtubeOptions } from '../utils/fetchData';
 import Detail from '../components/Detail/Detail';
 import ExerciseVideos from '../components/ExerciseVideos/ExerciseVideos';
 import SimilarExercises from '../components/SimilarExercises/SimilarExercises';
 
 function ExerciseDetail() {
-  const [exerciseDetail, setexerciseDetail] = useState({});
+  const [exerciseDetail, setExerciseDetail] = useState({});
+  const [exerciseVideos, setExerciseVideos] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -16,8 +17,11 @@ function ExerciseDetail() {
       const exerciseDbUrl = 'https://exercisedb.p.rapidapi.com';
       const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com/video/related';
 
-      const exerciseDetailData = await fetchData(`${exerciseDbUrl}/exercoses/${id}`, exerciseOptions);
-      setexerciseDetail(exerciseDetail);
+      const exerciseDetailData = await fetchData(`${exerciseDbUrl}/exercises/exercise/${id}`, exerciseOptions);
+      setExerciseDetail(exerciseDetailData);
+
+      const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?q=${exerciseDetailData.name}`, youtubeOptions);
+      setExerciseVideos(exerciseVideosData);
     };
 
     fetchExercisesData();
@@ -26,7 +30,7 @@ function ExerciseDetail() {
   return (
     <Box>
       <Detail exerciseDetail={exerciseDetail} />
-      <ExerciseVideos />
+      <ExerciseVideos exerciseVideos={exerciseVideos} name={exerciseDetail.name} />
       <SimilarExercises />
     </Box>
   );
