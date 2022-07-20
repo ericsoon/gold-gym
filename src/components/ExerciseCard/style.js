@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   exerciseCard: {
     width: '400px',
     height: '445px',
@@ -16,6 +16,12 @@ export default makeStyles(() => ({
     transition: '0.3s all ease-in-out',
     '&:hover': {
       transform: 'scale(1.1, 1.1)',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '280px',
+    },
+    [theme.breakpoints.down('lg')]: {
+      width: '320px',
     },
   },
 }));

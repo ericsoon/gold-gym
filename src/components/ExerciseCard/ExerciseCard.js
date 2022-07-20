@@ -8,7 +8,7 @@ function ExerciseCard({ exercise }) {
   const classes = useStyle();
   return (
     <Link to={`/exercise/${exercise.id}`} className={classes.exerciseCard}>
-      <img src={exercise.gifUrl} alt={exercise.name} loading="lazy" />
+      <img src={exercise.gifUrl} alt={exercise.name} loading="lazy" height="326px" />
       <Stack direction="row">
         <Button
           sx={{ ml: '21px',
